@@ -1,0 +1,7 @@
+{
+  "name": "dev_grill_customer",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
