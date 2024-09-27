@@ -18,5 +18,5 @@ export const routes: Routes = [
     path: 'sign',
     loadComponent: () => import('./sign/sign.page').then( m => m.SignPage),
     canActivate: [loginSafeGuard]
-  },
+  }
 ];

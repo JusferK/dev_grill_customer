@@ -65,7 +65,8 @@
               "namedChunks": true
             },
             "ci": {
-              "progress": false
+              "progress": false,
+              "defaultCollection": "@ionic/angular-toolkit"
             }
           },
           "defaultConfiguration": "production"
