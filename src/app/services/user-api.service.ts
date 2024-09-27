@@ -17,5 +17,9 @@ export class UserApiService {
   userLogin(body: any): Observable<IUser | boolean> {
     return this._httpClient.post<IUser>(`${this.baseURL}/login`, body);
   }
+  
+  userCreateAccount(newUser: IUser): Observable<IUser> {
+    return this._httpClient.post<IUser>(`${this.baseURL}/sign`, newUser);
+  }
 
 }

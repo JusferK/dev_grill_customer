@@ -1,3 +1,5 @@
+import { IOrderRequest } from "./order-request.model";
+
 export interface IUser {
     email: string;
     password: string;
@@ -5,4 +7,5 @@ export interface IUser {
     lastName: string;
     nit: number;
     signDate: Date;
+    orderRequestList?: IOrderRequest[]
 }
