@@ -64,13 +64,12 @@ export class LoginPage {
   }
 
   onSubmit() {
-    console.table(this.loginForm.value);
     this.userApiSuscription = this._userApiService.userLogin(this.loginForm.value).subscribe({
       next: (data: IUser | boolean) => {
-        
         if(data && typeof data !== 'boolean') {
+          data.password = this.loginForm.get('password')?.value;
           this._userProfileSession.setProfileSession(data);
-          this._router.navigate(['']);
+          this._router.navigate([''], { replaceUrl: true });
         } else {
           this.incorrectLogin.set(true);
         }

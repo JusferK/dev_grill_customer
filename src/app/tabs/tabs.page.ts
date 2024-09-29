@@ -7,6 +7,7 @@ import {
   newspaperOutline,
   personOutline
  } from 'ionicons/icons';
+ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tabs',
@@ -18,7 +19,8 @@ import {
     IonTabBar,
     IonTabButton,
     IonIcon,
-    IonLabel
+    IonLabel,
+    RouterLink
   ],
 })
 export class TabsPage {

@@ -60,12 +60,12 @@ export class SignPage {
 
   onSubmit() {
     this.createAccountForm.get('signDate')?.patchValue(new Date());
-    console.log(this.createAccountForm.value);
 
     this._userApiService.userCreateAccount(this.createAccountForm.value).subscribe({
       next: (data: IUser) => {
+        data.password = this.createAccountForm.get('password')?.value;
         this._userProfileService.setProfileSession(data);
-        this._router.navigate(['']);
+        this._router.navigate([''], { replaceUrl: true });
       },
       error: () => {
         this.returnedError.set(true);

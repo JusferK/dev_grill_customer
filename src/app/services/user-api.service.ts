@@ -22,4 +22,8 @@ export class UserApiService {
     return this._httpClient.post<IUser>(`${this.baseURL}/sign`, newUser);
   }
 
+  updateProfile(user: IUser): Observable<IUser> {
+    return this._httpClient.put<IUser>(`${this.baseURL}/update-user`, user);
+  }
+
 }

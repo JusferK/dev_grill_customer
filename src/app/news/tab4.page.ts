@@ -10,7 +10,8 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonCardSubtitle,
-  IonCardContent
+  IonCardContent,
+  IonSpinner
  } from '@ionic/angular/standalone';
 import { NewsApiService } from '../services/news-api.service';
 import { Subscription } from 'rxjs';
@@ -34,12 +35,14 @@ import { DatePipe } from '@angular/common';
     IonCardTitle,
     IonCardSubtitle,
     IonCardContent,
+    IonSpinner,
     DatePipe
   ]
 })
 export class Tab4Page implements OnInit, OnDestroy {
 
   newsItems = signal<INews[]>([]);
+  isLoading = signal<boolean>(true);
   newsServiceSuscription!: Subscription;
   private _newsApiService = inject(NewsApiService);
 
@@ -49,7 +52,9 @@ export class Tab4Page implements OnInit, OnDestroy {
     this.newsServiceSuscription = this._newsApiService.getAllNews().subscribe({
       next: (data: INews[]) => {
         this.newsItems.set(data);
-        console.log(this.newsItems());
+        setTimeout(() => {
+          this.isLoading.set(false);
+        }, 2000);
       }
     });
     

@@ -1,0 +1,120 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title style="text-align: center;">Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  @if(isLoading()) {
+    <ion-backdrop [visible]="isLoading()"></ion-backdrop>
+    <div class="spinner-position">
+      <ion-spinner name="crescent" color="secondary"></ion-spinner>
+    </div>
+  }
+
+  <div class="container">
+    <ion-card color="light">
+      <ion-card-content class="card-header">
+        <ion-icon name="person-circle-outline"></ion-icon>
+        <ion-card-title style="text-align: center;">Your profile {{ userProfile()?.name }}</ion-card-title>
+        <ion-card-subtitle style="text-align: center;">Member since {{ userProfile()?.signDate | date: 'longDate' }}</ion-card-subtitle>
+      </ion-card-content>
+    </ion-card>
+    <ion-card color="light">
+      <form [formGroup]="updateForm">
+        <ion-card-content class="info-card">
+
+          <div class="info-container">
+            <label>Email</label>
+            <span>{{ userProfile()?.email }}</span>
+          </div>
+  
+          @if (updateSignal()) {
+            <div class="info-container">  
+              <ion-input
+                label="Password"
+                label-placement="floating"
+                fill="outline"
+                placeholder="Enter your new password"
+                formControlName="password"
+                type="password"
+              >
+              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+              </ion-input>
+            </div>
+            <div class="info-container">  
+              <ion-input
+                label="Name"
+                label-placement="floating"
+                fill="outline"
+                placeholder="Enter your name"
+                formControlName="name"
+              >
+              </ion-input>
+            </div>
+            
+            <div class="info-container">  
+              <ion-input
+                label="Last Name"
+                label-placement="floating"
+                fill="outline"
+                placeholder="Enter your last name"
+                formControlName="lastName"
+              >
+              </ion-input>
+            </div>
+
+            <div class="info-container">  
+              <ion-input
+                label="Nit"
+                label-placement="floating"
+                fill="outline"
+                placeholder="Enter your new nit"
+                formControlName="nit"
+              >
+              </ion-input>
+            </div>
+
+          } @else {
+
+            <div class="info-container">
+              <label for="password">Password</label>
+              <span>{{ passwordToStars(userProfile()?.password) }}</span>
+            </div>
+
+            <div class="info-container">
+              <label for="name">Name</label>
+              <span>{{ userProfile()?.name }}</span>
+            </div>
+
+            <div class="info-container">
+              <label for="lastName">Last Name</label>
+              <span>{{ userProfile()?.lastName }}</span>
+            </div>
+            
+            <div class="info-container">
+              <label>Nit</label>
+              <span>{{ userProfile()?.nit }}</span>
+            </div>
+
+          }
+  
+        </ion-card-content>
+      </form>
+    </ion-card>
+
+    <ion-card color="light" class="btns-section">
+      @if(updateSignal()) {
+        <div class="btn-container">
+          <ion-button color="primary" (click)="onSubmit()" >Save</ion-button>
+          <ion-button color="danger" (click)="onUpdate()">Cancel</ion-button>
+        </div>
+      } @else {
+        <ion-button color="primary" (click)="onUpdate()">Update</ion-button>
+      }
+      <ion-button color="danger" (click)="logoutHandler()" >Logout</ion-button>
+    </ion-card>
+  </div>
+  <ion-toast message="No change made" [duration]="3000" icon="warning-outline"></ion-toast>
+</ion-content>

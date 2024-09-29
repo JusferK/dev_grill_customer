@@ -1,21 +1,21 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="Menu" href="/Menu">
+    <ion-tab-button tab="menu" [routerLink]="['/menu']" replaceUrl="true">
       <ion-icon name="fast-food-outline"></ion-icon>
       <ion-label>Menu</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="Orders" href="/Orders">
+    <ion-tab-button tab="orders" [routerLink]="['/orders']" replaceUrl="true">
       <ion-icon aria-hidden="true" name="reader-outline" ></ion-icon>
       <ion-label>Orders</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="News" href="/News">
+    <ion-tab-button tab="news" [routerLink]="['/news']" replaceUrl="true">
       <ion-icon aria-hidden="true" name="newspaper-outline"></ion-icon>
       <ion-label>News</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="Profile" href="/Profile">
+    <ion-tab-button tab="profile" [routerLink]="['/profile']" replaceUrl="true">
       <ion-icon aria-hidden="true" name="person-outline"></ion-icon>
       <ion-label>Profile</ion-label>
     </ion-tab-button>
