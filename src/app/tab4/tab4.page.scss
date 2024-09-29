@@ -1,0 +1,26 @@
+.container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.content-div {
+    width: 100%;
+    height: 100%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    overflow: scroll;
+}
+
+ion-card {
+    width: 95%;
+    margin: 5px;
+    height: auto;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+}

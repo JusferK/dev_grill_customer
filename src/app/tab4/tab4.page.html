@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title style="text-align: center;">News</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" >
+  <div class="container">
+    <div class="content-div">
+      @for (news_item of newsItems(); track $index) {
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ news_item.title }}</ion-card-title>
+            <ion-card-subtitle>publicated on {{ news_item.publicationDate | date }}</ion-card-subtitle>
+          </ion-card-header>
+          
+          <ion-card-content>
+            {{ news_item.text }}
+          </ion-card-content>
+          <img alt="post's photo" [src]="news_item.photo" style="object-fit: contain; width: 400px; height: 400px; margin-bottom: 10px;" />
+        </ion-card>
+      }
+    </div>
+  </div>
+</ion-content>
