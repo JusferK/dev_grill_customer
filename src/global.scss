@@ -35,3 +35,20 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 //@import '@ionic/angular/css/palettes/dark.system.css';
+
+ion-modal {
+    --border-radius: 50px !important;
+}
+
+ion-popover {
+  width: 60rem;
+}
+
+.transparent-loader .loading-spinner {
+  background: transparent !important;
+}
+
+.transparent-loader .loading-wrapper {
+  box-shadow: none !important;
+  background: transparent !important;
+}

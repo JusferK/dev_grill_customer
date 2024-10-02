@@ -1,0 +1,84 @@
+<ion-content [fullscreen]="true">
+  <div class="content-container">
+    <div class="sub-container">
+      <img 
+        [src]="menuInfo()?.photo"
+        alt="Menu's photo"
+        style="height: 40%; width: 100%; object-fit: cover;"
+      >
+      <div class="info-actions-container">
+        <h2>{{ menuInfo()?.name }}</h2>
+        <div class="amount-price-container">
+          <span>{{ subtotal() | currency: 'Q' }}</span>
+          <div class="number-stepper">
+            <ion-button
+              fill="clear"
+              [disabled]="quantity() === 1 || !menuInfo()?.isAvailable"
+              (click)="decrement()"
+            >
+              <ion-icon name="remove-outline"></ion-icon>
+            </ion-button>
+            <span>{{ quantity() }}</span>
+            <ion-button
+              fill="clear"
+              [disabled]="!menuInfo()?.isAvailable"
+              (click)="increment()"
+            >
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+        <p>{{ menuInfo()?.description }}</p>
+        <ion-accordion-group expand="inset">
+          <ion-accordion value="first">
+            <ion-item slot="header" color="light">
+              <ion-label>Ingredients</ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">
+              <ion-list>
+                @for (record of menuInfo()?.menuIngredientListList; track $index) {
+                <ion-item>
+                  <ion-label>{{ record.ingredientName }}</ion-label>
+                </ion-item>
+                }
+              </ion-list>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
+        <div class="actions-container">
+          <ion-button
+            shape="round"
+            [disabled]="!menuInfo()?.isAvailable || inCartAR()"
+            (click)="addToCart()"
+          >
+            @if(!menuInfo()?.isAvailable) {
+              No available
+            } @else {
+            <ion-icon name="cart-outline" style="margin: 5px;">
+            </ion-icon>
+              Add to cart
+            }
+          </ion-button>
+          <ion-button shape="round" (click)="goBack()">
+            Go back
+          </ion-button>
+        </div>
+        @if (inCartAR()) {
+          <ion-button
+            color="danger"
+            style="width: 100%;"
+            shape="round"
+            (click)="removeSelectedMenu()"
+          >
+            Remove selected menu
+          </ion-button>
+        }
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-footer>

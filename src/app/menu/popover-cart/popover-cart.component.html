@@ -1,0 +1,75 @@
+<div class="main-container">
+  <div class="content">
+    <ion-text color="dark">
+      <h2>Order summary</h2>
+    </ion-text>
+    <ion-list class="order-sumamary-list">
+      <ion-grid>
+        @for (cart_item of cart(); track $index) {
+          <ion-row>
+            <ion-item>
+              <ion-col>
+                <img
+                  [src]="cart_item.photo"
+                  alt="menu's photo"
+                  style="place-self: center;"
+                  width="50px"
+                  height="70px"
+                >
+              </ion-col>
+              <ion-col>
+                <p>
+                  <strong>{{ cart_item.menu_name }}</strong>
+                </p>
+                <p>
+                  {{ cart_item.subtotal | currency: 'Q' }}
+                </p>
+              </ion-col>
+              <ion-col>
+                <div class="number-stepper">
+                  <ion-button
+                    fill="clear"
+                    (click)="cart_item.quantity !== 1 ? decrement(cart_item) : removeItemCart(cart_item)"
+                  >
+                    <ion-icon [name]=" cart_item.quantity !== 1 ? 'remove-outline' : 'trash-outline' " ></ion-icon>
+                  </ion-button>
+                  <span>{{ cart_item.quantity }}</span>
+                  <ion-button
+                    fill="clear"
+                    (click)="increment(cart_item)"
+                  >
+                    <ion-icon name="add-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </ion-col>
+            </ion-item>
+          </ion-row>
+        }
+        <ion-row>
+          <ion-item>
+            <ion-col>Total</ion-col>
+            <ion-col size="auto">
+              <div style="width: 100%">{{ total() | currency: 'Q' }}</div>
+            </ion-col>
+          </ion-item>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+    <ion-button
+      style="width: 85%; margin: 10px;"
+      [disabled]="cart().length === 0"
+      (click)="sendOrder()"
+    >
+      Place order
+    </ion-button>
+  <div class="action-fields">
+    <ion-button
+      color="danger"
+      [disabled]="cart().length === 0"
+      (click)="clearCart()"
+    >
+      Clear cart</ion-button>
+    <ion-button (click)="closePop()" >Keep buying</ion-button>
+  </div>
+  </div>
+</div>

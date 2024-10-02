@@ -1,0 +1,54 @@
+.content-container {
+    display: flex;
+    justify-content: center;
+}
+
+.sub-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.info-actions-container {
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.info-actions-container p {
+    text-align: justify;
+}
+
+.actions-container {
+    display: flex;
+    width: 100%;
+    justify-self: end;
+}
+
+ion-button {
+    height: 5%;
+    width: 50%;
+}
+
+.amount-price-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.amount-price-container span {
+    place-self: center;
+}
+
+.number-stepper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+    padding: 5px;
+    width: 120px;
+}

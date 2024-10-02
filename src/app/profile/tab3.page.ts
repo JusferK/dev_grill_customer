@@ -15,7 +15,8 @@ import {
    IonButton,
    IonToast,
    IonBackdrop,
-   IonSpinner
+   IonSpinner,
+   LoadingController
    } from '@ionic/angular/standalone';
 import { ProfileSessionService } from '../services/profile-session.service';
 import { IUser } from '../models/user.model';
@@ -65,6 +66,7 @@ export class Tab3Page implements OnInit {
   private _router = inject(Router);
   private _toastController = inject(ToastController);
   private _userApiService = inject(UserApiService);
+  private _loadingCtrl = inject(LoadingController);
 
   constructor(private _fb: FormBuilder) {
     addIcons({ personCircleOutline, warningOutline, checkboxOutline });
@@ -87,13 +89,16 @@ export class Tab3Page implements OnInit {
     }
   }
 
-  onUpdate() {
-    this.updateSignal.update(prev => !prev);
-  }
+  onUpdate = () => this.updateSignal.update(prev => !prev);
 
   onSubmit() {
 
     const checker = this.validateSameValues();
+    this._loadingCtrl.create({
+      backdropDismiss: false,
+      spinner: 'crescent',
+      cssClass: 'transparent-loader'
+    }).then((e) => e.present());
 
     if(checker.includes(true)) {
 
@@ -106,20 +111,45 @@ export class Tab3Page implements OnInit {
           this.userProfile.set(data);
           this.userProfile.set(this.userProfile());
           this.updateSignal.set(false);
+
+          setTimeout(() => {
+            this._loadingCtrl.dismiss();
+            this._toastController.create({
+              message: 'Change made successfully!',
+              duration: 5000,
+              icon: checkboxOutline,
+              position: 'top'
+            })
+            .then((response) => response.present());
+          }, 3000);
+        },
+        error: () => {
+          setTimeout(() => {
+            this._loadingCtrl.dismiss();
+            this._toastController.create({
+              message: 'There was an problem, try later',
+              duration: 5000,
+              icon: warningOutline,
+              position: 'top'
+            })
+            .then((response) => response.present());
+          }, 3000);
         }
       });
+    } else {
+      setTimeout(() => {
+        this._loadingCtrl.dismiss();
+        this._toastController.create({
+          message: 'No change was made',
+          duration: 5000,
+          icon: warningOutline,
+          position: 'top'
+        })
+        .then((response) => response.present());
+      }, 1000);
+
     }
 
-    setTimeout(() => {
-      this.isLoading.set(false);
-      this._toastController.create({
-        message: checker.includes(true) ? 'Change made successfully!' : 'No change made',
-        duration: 5000,
-        icon: checker.includes(true) ? checkboxOutline : warningOutline,
-        position: 'top'
-      })
-      .then((response) => response.present());
-    }, 3000);
 
   }
 

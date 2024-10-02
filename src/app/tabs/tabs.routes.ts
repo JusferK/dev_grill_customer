@@ -8,11 +8,11 @@ export const routes: Routes = [
     children: [
       {
         path: 'menu',
-        loadComponent: () => import('../menu/tab1.page').then((m) => m.Tab1Page),
+        loadComponent: () => import('../menu/tab1.page').then((m) => m.Tab1Page)
       },
       {
         path: 'orders',
-        loadComponent: () => import('../orders/tab2.page').then((m) => m.Tab2Page),
+        loadComponent: () => import('../orders/tab2.page').then((m) => m.Tab2Page)
       },
       {
         path: 'news',

@@ -66,8 +66,10 @@
         >
         </ion-input>
 
-        @if(returnedError()) {
-          <ion-text color="danger">Something went wrong, try again later.</ion-text>
+        @if(foundEmail()) {
+          <ion-text color="danger" style="text-align: center;">Email is registered already</ion-text>
+        } @else if(returnedError()) {
+          <ion-text color="danger" style="text-align: center;">Something went wrong, try again later.</ion-text>
         }
 
         <ion-button 

@@ -1,0 +1,62 @@
+.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ion-backdrop {
+    background: var(--ion-color-dark);
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.spinner-position {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    place-self: center;
+}
+
+ion-list {
+    width: 100%;
+    overflow-y: auto;
+}
+
+.order-sumamary-list ion-col {
+    margin: 5px;
+    padding: 0px;
+    gap: 5px;
+}
+
+ion-item {
+    width: 100%;
+}
+
+ion-text h3 {
+    margin: 0px;
+}
+
+.large-col {
+    padding: 0px;
+}
+
+.number-stepper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+    padding: 5px;
+    width: 120px;
+}

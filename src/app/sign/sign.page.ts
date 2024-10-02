@@ -41,6 +41,7 @@ import { ProfileSessionService } from '../services/profile-session.service';
 })
 export class SignPage {
 
+  foundEmail = signal<boolean>(false);
   returnedError = signal<boolean>(false);
   createAccountForm: FormGroup;
   private _userProfileService = inject(ProfileSessionService);
@@ -67,8 +68,18 @@ export class SignPage {
         this._userProfileService.setProfileSession(data);
         this._router.navigate([''], { replaceUrl: true });
       },
-      error: () => {
-        this.returnedError.set(true);
+      error: (error: any) => {
+        if(error.error.message === 'Email is already registered.') {
+          this.foundEmail.set(true);
+        } else {
+          this.returnedError.set(true);
+        }
+
+        setTimeout(() => {
+          this.foundEmail.set(false);
+          this.returnedError.set(false);
+        }, 5000);
+        
       }
     })
   }

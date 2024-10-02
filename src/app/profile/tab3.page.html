@@ -5,14 +5,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  @if(isLoading()) {
-    <ion-backdrop [visible]="isLoading()"></ion-backdrop>
-    <div class="spinner-position">
-      <ion-spinner name="crescent" color="secondary"></ion-spinner>
-    </div>
-  }
-
   <div class="container">
     <ion-card color="light">
       <ion-card-content class="card-header">
@@ -116,5 +108,5 @@
       <ion-button color="danger" (click)="logoutHandler()" >Logout</ion-button>
     </ion-card>
   </div>
-  <ion-toast message="No change made" [duration]="3000" icon="warning-outline"></ion-toast>
+  <ion-toast></ion-toast>
 </ion-content>
