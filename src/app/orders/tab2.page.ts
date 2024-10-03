@@ -127,7 +127,8 @@ export class Tab2Page implements OnInit, OnDestroy{
       componentProps: {
         orderInput: order
       },
-      initialBreakpoint: .90
+      initialBreakpoint: .90,
+      cssClass: 'modal-content'
     })
     .then((e) => e.present());
   }

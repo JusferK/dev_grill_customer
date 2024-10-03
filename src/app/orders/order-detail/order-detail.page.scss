@@ -6,13 +6,17 @@
     justify-content: center;
 }
 
+ion-content {
+    overflow-y: auto;
+}
+
 .main-container {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding: 10px;
     justify-content: flex-start;
-    height: 100%;
+    overflow-y: auto;
 }
 
 .main-container .main-info {
@@ -34,6 +38,11 @@ ion-item, ion-row, ion-grid, .accordion-container {
 
 .special-card-content {
     padding: 5px;
+    overflow-y: auto;
+}
+
+ion-accordion-group {
+    overflow-y: auto;
 }
 
 .ion-col {

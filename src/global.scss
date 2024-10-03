@@ -40,6 +40,13 @@ ion-modal {
     --border-radius: 50px !important;
 }
 
+.modal-content {
+  max-height: 100%;
+  overflow-y: auto;
+  --height: 90%;
+  --max-height: 100%; 
+}
+
 ion-popover {
   width: 60rem;
 }
