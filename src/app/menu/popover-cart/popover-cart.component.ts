@@ -23,7 +23,7 @@ import { ProfileSessionService } from 'src/app/services/profile-session.service'
 import { CurrencyPipe } from '@angular/common';
 import { addIcons } from 'ionicons';
 import { removeOutline, trashOutline, checkmarkOutline, alertOutline } from 'ionicons/icons';
-import { IOrderRequest } from 'src/app/models/order-request.model';
+import { IOrderRequest, Status } from 'src/app/models/order-request.model';
 import { IMenuOrder } from 'src/app/models/menu-order.model';
 import { OrderRequestApiService } from 'src/app/services/order-request-api.service';
 import { Subscription } from 'rxjs';
@@ -153,7 +153,7 @@ export class PopoverCartComponent implements OnInit, OnDestroy {
     const body: IOrderRequest = {
       orderDateTime: new Date(),
       totalDue: this.total(),
-      status: 'pending',
+      status: Status.Pending,
       lastStatusUpdate: new Date(),
       userEmail: this.userProfile().email,
       menuOrderList: menuOrderListBody
@@ -171,12 +171,12 @@ export class PopoverCartComponent implements OnInit, OnDestroy {
               this._loadingCtrl.dismiss();
               this._toastService.create({
                 message: 'Order was placed successfully',
-                duration: 4000,
+                duration: 2000,
                 position: 'bottom',
                 icon: 'checkmark-outline'
               })
               .then((e) => e.present());
-            }, 3000);
+            }, 1000);
           }
         })
 
@@ -187,12 +187,12 @@ export class PopoverCartComponent implements OnInit, OnDestroy {
           this._loadingCtrl.dismiss();
           this._toastService.create({
             message: 'There was a problem, try again later.',
-            duration: 4000,
+            duration: 2000,
             position: 'bottom',
             icon: 'alert-outline'
           })
           .then((e) => e.present());
-        }, 3000)
+        }, 1000)
       }
     })
   }

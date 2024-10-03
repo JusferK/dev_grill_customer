@@ -89,9 +89,7 @@ export class Tab1Page implements OnInit {
     this.menuSuscription = this._menuApiService.getAllMenus().subscribe({
       next: (data: IMenu[]) => {
         this.menuList.set(data);
-        setTimeout(() => {
-          this.isLoading.set(false);
-        }, 2000);
+        this.isLoading.set(false);
       },
     });
   }
@@ -132,7 +130,7 @@ export class Tab1Page implements OnInit {
       ) : (
         'Menu added to card'
       ),
-      duration: 5000,
+      duration: 2000,
       position: 'bottom'
     });
 
@@ -177,7 +175,7 @@ export class Tab1Page implements OnInit {
       });
 
       e.target.complete();
-    }, 2000)
+    }, 1000)
   }
 
 }

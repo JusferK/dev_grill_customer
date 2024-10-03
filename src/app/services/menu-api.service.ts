@@ -19,4 +19,8 @@ export class MenuApiService {
     return this._httpClient.get<IMenu[]>(`${this.baseURL}/all-menus`);
   }
 
+  getMenu(id: number): Observable<IMenu> {
+    return this._httpClient.get<IMenu>(`${this.baseURL}/get-menu/${id}`);
+  }
+
 }

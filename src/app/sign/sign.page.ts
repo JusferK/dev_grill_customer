@@ -78,7 +78,7 @@ export class SignPage {
         setTimeout(() => {
           this.foundEmail.set(false);
           this.returnedError.set(false);
-        }, 5000);
+        }, 1000);
         
       }
     })

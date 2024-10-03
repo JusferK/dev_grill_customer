@@ -101,7 +101,7 @@ export class MenuDetailPagePage implements OnInit {
   
       const toast = await this._toastService.create({
         message: `Increase quantity to ${this.quantity()}`,
-        duration: 5000,
+        duration: 2000,
         position: 'bottom'
       });
   
@@ -117,7 +117,7 @@ export class MenuDetailPagePage implements OnInit {
     if(this.inCartAR()) {
       const toast = await this._toastService.create({
         message: `Decreace quantity to ${this.quantity()}`,
-        duration: 5000,
+        duration: 2000,
         position: 'bottom'
       });
   
@@ -150,7 +150,7 @@ export class MenuDetailPagePage implements OnInit {
 
     const toast = await this._toastService.create({
       message: `${item_cart.menu_name} removed`,
-      duration: 5000,
+      duration: 2000,
       position: 'bottom'
     });
 
@@ -172,7 +172,7 @@ export class MenuDetailPagePage implements OnInit {
 
     const toast = await this._toastService.create({
       message: `${add_cart_item.quantity} ${add_cart_item.menu_name} added to cart.`,
-      duration: 5000,
+      duration: 2000,
       position: 'bottom'
     });
 

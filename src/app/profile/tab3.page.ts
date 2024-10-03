@@ -116,24 +116,24 @@ export class Tab3Page implements OnInit {
             this._loadingCtrl.dismiss();
             this._toastController.create({
               message: 'Change made successfully!',
-              duration: 5000,
+              duration: 2000,
               icon: checkboxOutline,
               position: 'top'
             })
             .then((response) => response.present());
-          }, 3000);
+          }, 1000);
         },
         error: () => {
           setTimeout(() => {
             this._loadingCtrl.dismiss();
             this._toastController.create({
               message: 'There was an problem, try later',
-              duration: 5000,
+              duration: 2000,
               icon: warningOutline,
               position: 'top'
             })
             .then((response) => response.present());
-          }, 3000);
+          }, 1000);
         }
       });
     } else {
@@ -141,7 +141,7 @@ export class Tab3Page implements OnInit {
         this._loadingCtrl.dismiss();
         this._toastController.create({
           message: 'No change was made',
-          duration: 5000,
+          duration: 2000,
           icon: warningOutline,
           position: 'top'
         })

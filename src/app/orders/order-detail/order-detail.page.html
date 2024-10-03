@@ -1,0 +1,85 @@
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="isLoading()">
+    <div class="spinner-container">
+      <ion-spinner name="crescent" color="secondary"></ion-spinner>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!isLoading()">
+    <div class="main-container">
+
+      <ion-card class="main-info">
+        <ion-card-header>
+          <ion-card-title>Order #{{ order()?.idOrderRequest }}</ion-card-title>
+          <ion-card-subtitle>Total: {{ order()?.totalDue | currency: 'Q' }}</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-text [color]="labelColor(order()?.status!)">
+            <p>Status: {{ order()?.status }}</p>
+          </ion-text>
+          <ion-text>
+            <p>Ordered: {{ order()?.orderDateTime  | date: 'MMMM d, y, h:mm:ss a' }}</p>
+          </ion-text>
+          <ion-text>
+            <p>Last update: {{ order()?.lastStatusUpdate | date: 'MMMM d, y, h:mm:ss a' }}</p>
+          </ion-text>
+          <ion-text>
+            <p>Email on file: {{ order()?.userEmail }}</p>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-content class="special-card-content">
+          <ion-accordion-group value="first">
+            <ion-accordion>
+              <ion-item slot="header" color="light">
+                <ion-label>Order summary</ion-label>
+              </ion-item>
+              <div class="ion-padding accordion-container" slot="content" style="padding: 0px;">
+                <ion-grid style="padding: 0px;">
+                  <ion-row>
+                    <ion-item>
+                      <ion-col>Ref.</ion-col>
+                      <ion-col>Name</ion-col>
+                      <ion-col>Qua.</ion-col>
+                      <ion-col>Pr.</ion-col>
+                      <ion-col>Subt.</ion-col>
+                    </ion-item>
+                  </ion-row>
+                  @for (record of menuDetalList(); track $index) {
+                    <ion-row>
+                      <ion-item>
+                        <ion-col>
+                          <img 
+                            [src]="record.photo"
+                            alt="menu's photo"
+                          >
+                        </ion-col>
+                        <ion-col  class="ion-text-center">{{ record.menu_name }}</ion-col>
+                        <ion-col  class="ion-text-center">{{ record.quantity }}</ion-col>
+                        <ion-col  class="ion-text-center">{{ record.menu_price | currency: 'Q' }}</ion-col>
+                        <ion-col  class="ion-text-center">{{ record.subtotal | currency: 'Q' }}</ion-col>
+                      </ion-item>
+                    </ion-row>
+                  }
+                  <ion-row>
+                    <ion-item>
+                      <ion-col>Total</ion-col>
+                      <ion-col size="auto">
+                        <div style="width: 100%">{{ order()?.totalDue | currency: 'Q' }}</div>
+                      </ion-col>
+                    </ion-item>
+                  </ion-row>
+                </ion-grid>
+              </div>
+            </ion-accordion>
+          </ion-accordion-group>
+        </ion-card-content>
+      </ion-card>
+
+    </div>
+
+
+  </ng-container>
+</ion-content>

@@ -52,9 +52,7 @@ export class Tab4Page implements OnInit, OnDestroy {
     this.newsServiceSuscription = this._newsApiService.getAllNews().subscribe({
       next: (data: INews[]) => {
         this.newsItems.set(data);
-        setTimeout(() => {
-          this.isLoading.set(false);
-        }, 2000);
+        this.isLoading.set(false);
       }
     });
     

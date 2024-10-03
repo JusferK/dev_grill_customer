@@ -19,4 +19,8 @@ export class OrderRequestApiService {
     return this._httpClient.post<IOrderRequest>(`${this.baseURL}/new-order`, body);
   }
 
+  updateOrder(body: IOrderRequest): Observable<IOrderRequest> {
+    return this._httpClient.put<IOrderRequest>(`${this.baseURL}/update-order-status/${body.idOrderRequest}`, body);
+  }
+
 }
